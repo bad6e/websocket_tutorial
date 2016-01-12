@@ -16,11 +16,21 @@ const server = http.createServer(app)
                 console.log('Listening on port ' + port + '.');
                });
 
-module.exports = server;
-
-
-const socketIo = require ('socket.io');
+const socketIo = require('socket.io');
 const io = socketIo(server);
+
+io.on('connection', function(socket){
+  console.log("A user has connected", io.engine.clientsCount);
+
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
+
+  socket.on('disconnect', function () {
+    console.log('A user has disconnected.', io.engine.clientsCount);
+  });
+});
+
+
+module.exports = server;
 
 
 
