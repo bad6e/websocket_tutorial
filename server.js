@@ -1,5 +1,6 @@
 const http = require('http');
 const express = require('express');
+const _ = require('lodash');
 
 const app = express();
 
@@ -29,41 +30,19 @@ io.on('connection', function(socket){
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       votes[socket.id] = message;
-      socket.emit('voteCount', countVotes(votes));
+      socket.emit('voteCast', "You voted " + message + " !!!")
+      socket.emit('voteCount', _.countBy(votes))
     }
   });
 
   socket.on('disconnect', function () {
     console.log('A user has disconnected.', io.engine.clientsCount);
     delete votes[socket.id];
-    console.log(votes);
+    socket.emit('voteCount', _.countBy(votes))
     io.sockets.emit('usersConnected', io.engine.clientsCount);
   });
 
 
 });
 
-function countVotes(votes) {
-  var voteCount = {
-    A: 0,
-    B: 0,
-    C: 0,
-    D: 0
-  };
-
-  for (vote in votes) {
-    voteCount[votes[vote]]++
-  }
-  return voteCount;
-}
-
-
-
-
-
-
-
 module.exports = server;
-
-
-
