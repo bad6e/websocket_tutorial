@@ -7,7 +7,7 @@ socket.on('usersConnected', function (count) {
   connectionCount.innerText = 'Connected Users: ' + count;
 });
 
-var statusMessage = document.getElementById('status-message');
+var statusMessage = document.getElementById('your-vote');
 
 socket.on('statusMessage', function (message) {
   statusMessage.innerText = message + ' on socket ' + socket.id;
@@ -25,7 +25,7 @@ socket.on('voteCast', function (message) {
   statusMessage.innerText = message;
 });
 
-var votesList = document.getElementById('current-votes');
+var votesList = document.getElementById('vote-list');
 
 socket.on('voteCount', function (votes) {
   var votesToRender = "Current votes";

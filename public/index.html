@@ -1,27 +1,29 @@
 <!doctype html>
 <html>
   <head>
-    <title>Ask the Audience</title>
+    <title>Ask the Audience</title><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
   </head>
   <body>
     <br>
     <div class="container">
-      <div id="connection-count"></div>
-    </div>
-    <br>
-    <div class="container">
-      <div id="status-message"></div>
-    </div>
-    <br>
-    <div class="container">
-      <ul id="current-votes">Here are the votes</ul>
+      <div class='row well'>
+        <div id="connection-count"></div>
+      </div>
+      <br>
+      <div id="your-vote"></div>
+      <br>
+      <div class="container row well">
+        <ol id="vote-list">Current Votes:</ol>
+      </div>
     </div>
     <br>
     <div class="container" id="choices">
-      <button>A</button>
-      <button>B</button>
-      <button>C</button>
-      <button>D</button>
+      <div class="col-md-12 row well">
+        <button class="btn btn-primary">A</button>
+        <button class="btn btn-primary">B</button>
+        <button class="btn btn-primary">C</button>
+        <button class="btn btn-primary">D</button>
+      </div>
     </div>
     <!-- Make sure your JS is at the bottom of the body! -->
     <script src="/socket.io/socket.io.js"></script>
